@@ -1,0 +1,3 @@
+python-dotenv[cli]
+fabric>=2
+requests
