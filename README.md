@@ -30,10 +30,12 @@ workon deploy
 ```
 
 
-Checkout *deploy* project
+Checkout *Deploy* project
 ---
 
-...
+```
+git clone https://github.com/webtweakers/deploy.git
+```
 
 
 Install requirements
