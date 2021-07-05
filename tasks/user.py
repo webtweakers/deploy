@@ -19,9 +19,9 @@ def get_id(c):
 
     print(f'{CYAN}Retrieving user-id for {user_name}...{COL_END}')
     response = c.config.control.api.get_users()
-
+    
     try:
-        rec = next(x for x in response['users'] if x['name'] == user_name)
+        rec = next(x for x in response if x['name'] == user_name)
     except StopIteration:
         print(f'{YELLOW}No user-id found: user does not exist.{COL_END}')
         # this is a valid response:
