@@ -107,9 +107,10 @@ def create_app(c, app_name, app_id=None):
 
     print(f'{CYAN}Creating app {app_name}...{COL_END}')
     response = c.config.control.api.add_app(app_type, app_name, user_id)
+    # response is a list
 
     print(f'{GREEN}App {app_name} created!{COL_END}')
-    return response['id']
+    return response[0]['id']
 
 
 def get_app_info(c, app_id):

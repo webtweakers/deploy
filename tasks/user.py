@@ -19,7 +19,7 @@ def get_id(c):
 
     print(f'{CYAN}Retrieving user-id for {user_name}...{COL_END}')
     response = c.config.control.api.get_users()
-    
+
     try:
         rec = next(x for x in response if x['name'] == user_name)
     except StopIteration:

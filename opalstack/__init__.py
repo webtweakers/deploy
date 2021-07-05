@@ -206,14 +206,21 @@ class API:
         :param app_name: Name of app
         :param user_id: UUID of app user
         :return: API Response:
-            {
-                'id': '01234567-89ab-cdef-0123-456789abcdef',
-                'name': 'application1',
-                'server': '01234567-89ab-cdef-0123-456789abcdef',
-                'json': {},
-                'type': 'CUS',
-                'installer_url': None
-            }
+            [
+                {
+                    'id': '01234567-89ab-cdef-0123-456789abcdef',
+                    'state': 'PENDING_START',
+                    'ready': False,
+                    'name': 'application1',
+                    'server': '01234567-89ab-cdef-0123-456789abcdef',
+                    'osuser': '01234567-89ab-cdef-0123-456789abcdef',
+                    'type': 'CUS',
+                    'port': 12345,
+                    'installer_url': None,
+                    'json': {},
+                    'osuser_name': 'user1'
+                }
+            ]
         """
         method_url = '/app/create/'
         payload = [{'json': {}, 'type': app_type, 'name': app_name,
