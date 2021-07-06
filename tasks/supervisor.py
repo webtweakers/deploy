@@ -201,8 +201,12 @@ def _build_project_config(config):
             if 'loglevel' in args:
                 args['log-level'] = args.pop('loglevel')
 
+            app = section.pop('application')
+            if not app:
+                app = f'{config.project.name}.wsgi:application'
+
             args = _build_args(args)
-            command = f'{config.data.env_path}/bin/gunicorn {args} {config.project.name}.wsgi:application'
+            command = f'{config.data.env_path}/bin/gunicorn {args} {app}'
 
         # uwsgi ---------------------------------
         elif cmd == 'uwsgi':

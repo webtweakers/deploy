@@ -93,6 +93,7 @@ project:
 
       gunicorn:
         command: gunicorn  # deploy supervisor command
+        application: wsgi:application  # custom location of wsgi
         args:
           workers: 2
           threads: 1
@@ -113,6 +114,36 @@ This is basic YAML, so you could also write this, for instance:
         - celery_beat
         - gunicorn
 ```
+
+For a simple Django app a configuration may be as basic as this:
+
+```yaml
+control:
+  service: opalstack
+  token: 123abc
+
+project:
+  server: opal1.opalstack.com
+  name: myproject
+  user: myuser
+  source: source
+  dependencies:
+    python: 3.9.0
+
+  supervisor:
+
+    programs:
+
+      app_gunicorn:  # program name for supervisor
+        command: gunicorn
+        args:
+          workers: 1
+          max-requests: 1000
+          loglevel: error
+```
+
+Note: if you are running multiple instances of gunicorn (or redis) for the same project user, you 
+need to specify different program names.
 
 *Deploy* currently supports [supervisor](http://supervisord.org/) to manage services and will create
 and update its configuration files based on the settings provided in your `fabric.yml`.
