@@ -210,7 +210,7 @@ to update your `.env` and re-deploy or manually update on the server.)
 
 To list all remote environment variables:
 ```
-fab -f $HOME/dev/chaturfier/fabric.yml env
+fab -f /path/to/project/fabric.yml env
 ```
 
 
