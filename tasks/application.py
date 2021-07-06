@@ -23,7 +23,9 @@ def create(c):
     app_name = c.config.project.name
     app_id = c.config.data.get('app_id')
     c.config.data.app_id = create_app(c, app_name, app_id)
-    # TODO: create 'tmp' dir in app dir
+
+    # create tmp dir
+    c.run(f'mkdir -p /home/{c.config.project.user}/apps/{c.config.project.name}/tmp')
     return True
 
 
@@ -37,7 +39,7 @@ def get_info(c):
 
     c.config.data.app_path = f'/home/{c.config.project.user}/apps/{c.config.project.name}'.lower()
     c.config.data.log_path = f'/home/{c.config.project.user}/logs/apps/{c.config.project.name}'.lower()
-    c.config.data.src_path = f'{c.config.data.app_path}/app'  # must be sub of app_path
+    c.config.data.src_path = f'{c.config.data.app_path}/{c.config.project.source}'
     c.config.data.env_path = f'{c.config.data.app_path}/env'
     c.config.data.backup_path = f'{c.config.data.app_path}/backup'
     return True
